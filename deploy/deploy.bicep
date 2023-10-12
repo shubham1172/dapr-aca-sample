@@ -89,36 +89,3 @@ resource orderProcessor 'Microsoft.App/containerApps@2023-05-01' = {
     }
   }
 }
-
-// resource pythonapp 'Microsoft.App/containerApps@2022-03-01' = {
-//   name: 'pythonapp'
-//   location: location
-//   properties: {
-//     managedEnvironmentId: environment.id
-//     configuration: {
-//       dapr: {
-//         enabled: true
-//         appId: 'pythonapp'
-//       }
-//     }
-//     template: {
-//       containers: [
-//         {
-//           image: 'dapriosamples/hello-k8s-python:latest'
-//           name: 'hello-k8s-python'
-//           resources: {
-//             cpu: json('0.5')
-//             memory: '1.0Gi'
-//           }
-//         }
-//       ]
-//       scale: {
-//         minReplicas: 1
-//         maxReplicas: 1
-//       }
-//     }
-//   }
-//   dependsOn: [
-//     nodeapp
-//   ]
-// }
