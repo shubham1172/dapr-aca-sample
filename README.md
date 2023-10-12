@@ -23,19 +23,29 @@ docker buildx build --platform linux/amd64 -t ghcr.io/shubham1172/aca-dapr-examp
 docker buildx build --platform linux/amd64 -t ghcr.io/shubham1172/aca-dapr-example/order-publisher:latest --push ./order-publisher
 ```
 
-## Deploying the services
+## Deploying container app environment and apps
 
 Do this via portal for now, there is some issue with these commands.
 
 ```bash
-# add random suffix to avoid name collisions
 VAR_RESOURCE_GROUP="dapraca$(uuidgen | cut -c1-4)"
 VAR_ENVIRONMENT="myacaenv"
 VAR_LOCATION="eastus"
+
+## Create the managed environment
 az deployment group create \
-  --name AcaDeployment \
   --resource-group "$VAR_RESOURCE_GROUP" \
-  --template-file ./deploy/deploy.bicep \
+  --template-file ./deploy/managedEnvironment.bicep \
+  --parameters environment_name="$VAR_ENVIRONMENT" \
+  --parameters location="$VAR_LOCATION"
+
+## Initialize Dapr components
+az containerapp env dapr-component init -g $VAR_RESOURCE_GROUP --name $VAR_ENVIRONMENT 
+
+## Deploy the container apps
+az deployment group create \
+  --resource-group "$VAR_RESOURCE_GROUP" \
+  --template-file ./deploy/containerApps.bicep \
   --parameters environment_name="$VAR_ENVIRONMENT" \
   --parameters location="$VAR_LOCATION"
 ```
