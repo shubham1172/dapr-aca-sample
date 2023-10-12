@@ -49,11 +49,3 @@ ContainerAppConsoleLogs_CL
 | project time_t, RevisionName_s, Log_s
 | order by time_t asc
 ```
-
-## Clean up
-
-```bash
-az deployment group delete \
-  --name AcaDeployment \
-  --resource-group "$VAR_RESOURCE_GROUP"
-```
