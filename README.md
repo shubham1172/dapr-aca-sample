@@ -28,7 +28,8 @@ docker buildx build --platform linux/amd64 -t ghcr.io/shubham1172/aca-dapr-examp
 Do this via portal for now, there is some issue with these commands.
 
 ```bash
-VAR_RESOURCE_GROUP="dapracarg"
+# add random suffix to avoid name collisions
+VAR_RESOURCE_GROUP="dapraca$(uuidgen | cut -c1-4)"
 VAR_ENVIRONMENT="myacaenv"
 VAR_LOCATION="eastus"
 az deployment group create \
@@ -48,4 +49,11 @@ ContainerAppConsoleLogs_CL
 | where ContainerName_s == "daprd"
 | project time_t, RevisionName_s, Log_s
 | order by time_t asc
+```
+
+## Cleanup
+
+```bash
+# Delete the resource group
+az group delete --name "$VAR_RESOURCE_GROUP"
 ```
