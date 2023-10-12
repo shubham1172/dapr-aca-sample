@@ -28,9 +28,15 @@ docker buildx build --platform linux/amd64 -t ghcr.io/shubham1172/aca-dapr-examp
 Do this via portal for now, there is some issue with these commands.
 
 ```bash
-VAR_RESOURCE_GROUP="dapraca$(uuidgen | cut -c1-4)"
+VAR_RESOURCE_GROUP="dapraca-$(uuidgen | cut -c1-4)"
 VAR_ENVIRONMENT="myacaenv"
 VAR_LOCATION="eastus"
+echo $VAR_RESOURCE_GROUP
+
+## Create the resource group
+az group create \
+  --name "$VAR_RESOURCE_GROUP" \
+  --location "$VAR_LOCATION"
 
 ## Create the managed environment
 az deployment group create \
