@@ -69,7 +69,7 @@ resource orderProcessor 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'DAPR_STATESTORE_COMPONENT'
-              value: 'dapr-postgres-statestore-postgres'
+              value: 'dapr-redis-statestore-redis'
             }
             {
               name: 'APP_PORT'
