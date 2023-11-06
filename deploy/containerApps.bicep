@@ -26,7 +26,7 @@ resource orderPublisher 'Microsoft.App/containerApps@2023-05-01' = {
           env: [
             {
               name: 'DAPR_PUBSUB_COMPONENT'
-              value: 'pubsub'
+              value: 'dapr-redis-pubsub'
             }
           ]
           resources: {
@@ -65,11 +65,11 @@ resource orderProcessor 'Microsoft.App/containerApps@2023-05-01' = {
           env: [
             {
               name: 'DAPR_PUBSUB_COMPONENT'
-              value: 'pubsub'
+              value: 'dapr-redis-pubsub'
             }
             {
               name: 'DAPR_STATESTORE_COMPONENT'
-              value: 'statestore'
+              value: 'dapr-redis-statestore'
             }
             {
               name: 'APP_PORT'
