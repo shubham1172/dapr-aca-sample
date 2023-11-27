@@ -19,8 +19,8 @@ dapr run --app-id order-publisher -- python3 app.py
 Package the order-processor and order-publisher services into Docker images and push them to a Docker registry. You can use the following commands to build and push the images to your Docker Hub account:
 
 ```bash
-docker buildx build --platform linux/amd64 -t ghcr.io/shubham1172/aca-dapr-example/order-processor:latest --push ./order-processor
-docker buildx build --platform linux/amd64 -t ghcr.io/shubham1172/aca-dapr-example/order-publisher:latest --push ./order-publisher
+docker buildx build --platform linux/amd64 -t daprms.azurecr.io/public/daprio/samples/azcli-capps/python-order-publisher:latest --push ./order-publisher
+docker buildx build --platform linux/amd64 -t daprms.azurecr.io/public/daprio/samples/azcli-capps/python-order-processor:latest --push ./order-processor
 ```
 
 ## Deploying container app environment and apps
