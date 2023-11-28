@@ -21,7 +21,7 @@ resource orderPublisher 'Microsoft.App/containerApps@2023-05-01' = {
     template: {
       containers: [
         {
-          image: 'ghcr.io/shubham1172/aca-dapr-example/order-publisher:latest'
+          image: 'daprms.azurecr.io/public/daprio/samples/azcli-capps/python-order-publisher:latest'
           name: 'order-publisher'
           env: [
             {
@@ -60,7 +60,7 @@ resource orderProcessor 'Microsoft.App/containerApps@2023-05-01' = {
     template: {
       containers: [
         {
-          image: 'ghcr.io/shubham1172/aca-dapr-example/order-processor:latest'
+          image: 'daprms.azurecr.io/public/daprio/samples/azcli-capps/python-order-processor:latest'
           name: 'order-processor'
           env: [
             {
